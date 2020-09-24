@@ -32,7 +32,7 @@ LNode* selectItem(LinkList list,int e){ //按值查找
     }
     return p;
 }
-
+/*求单链表长度*/
 int getLen(LinkList list){
     LNode* p = list->next;
     int i=0;
@@ -59,6 +59,7 @@ int InsertList(LinkList *list,int e,int i){ //按位插入
     p->next=r;
     return 1;
 }
+
 int InsertNextList(LNode* list,int e){  //后插
     if(list==NULL) return 0;
     LNode* p = (LNode*)malloc(sizeof(LNode));
