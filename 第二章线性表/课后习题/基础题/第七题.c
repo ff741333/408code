@@ -25,15 +25,19 @@ int InsertNextList(LNode* list,int e){
     return 1;
 }
 
-LNode* FindMin(LinkList list){
-    LNode *p = list->next, *minNode = p;
+void DeleteMin(LinkList list){
+    LNode *pre = list, *p = list->next, *minNode = p, *minPriorNode = pre;
     while (p!=NULL)
     {
-        if(p->data<minNode->data)
+        if(p->data<minNode->data){
             minNode = p;
+            minPriorNode = pre;
+        }
         p = p->next;
+        pre = pre->next;
     }
-    return minNode;
+    minPriorNode->next = minNode->next;
+    free(minNode);
 }
 
 /*得到链表长度*/
@@ -66,6 +70,9 @@ int main(){
     InsertNextList(list,-1);
     InsertNextList(list,5);
     show(list);
-    printf("最小元素为：%d", FindMin(list)->data);
+    DeleteMin(list);
+    show(list);
+    DeleteMin(list);
+    show(list);
     return 0;
 }
